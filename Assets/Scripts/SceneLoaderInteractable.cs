@@ -3,30 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoaderInteractable : MonoBehaviour
 {
-    public string sceneToLoad;   // Name of the scene
-    private bool playerInRange = false;
+    public string sceneToLoad;           // Scene to load
+    public Color highlightColor = Color.yellow;
 
-    void Update()
+    private Renderer rend;
+    private Color originalColor;
+
+    void Start()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            SceneManager.LoadScene(sceneToLoad);
-        }
+        rend = GetComponent<Renderer>();
+        originalColor = rend.material.color;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Highlight()
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
+        rend.material.color = highlightColor;
     }
 
-    private void OnTriggerExit(Collider other)
+    public void RemoveHighlight()
     {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
+        rend.material.color = originalColor;
     }
 }

@@ -139,13 +139,27 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7068291901607325315, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+--- !u!114 &110695786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110695778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61ec051506b002c4a97b1a139503cf82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderInteractable
+  sceneToLoad: Baking
+  highlightColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &184306932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8894478252076812250, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
@@ -709,6 +723,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BakeryLayout
       objectReference: {fileID: 0}
+    - target: {fileID: 1787390712724228314, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5217358336407427601, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.0280783
@@ -726,6 +744,7 @@ PrefabInstance:
     - {fileID: 6108167849042633955, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
     - {fileID: -7010618240547066004, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
     - {fileID: -5047176310519578152, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+    - {fileID: -7581888953608562793, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: 0
@@ -746,6 +765,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -492845263411402631, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 110695782}
+    - targetCorrespondingSourceObject: {fileID: -492845263411402631, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 110695786}
     - targetCorrespondingSourceObject: {fileID: -8894478252076812250, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 184306936}
@@ -770,6 +792,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1787390712724228314, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1972621220}
+    - targetCorrespondingSourceObject: {fileID: 1787390712724228314, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1972621223}
     - targetCorrespondingSourceObject: {fileID: 4965558566952795345, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1837733060}
@@ -1158,6 +1183,20 @@ CapsuleCollider:
   m_Height: 0.48472828
   m_Direction: 1
   m_Center: {x: -0.00000023841858, y: 0.0312892, z: 0.6498572}
+--- !u!114 &1972621223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972621215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a41b385df99ec44fa5eaa7b3603df19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  playerCamera: {fileID: 1341846629}
+  interactDistance: 5
 --- !u!1 &2011136932
 GameObject:
   m_ObjectHideFlags: 0
