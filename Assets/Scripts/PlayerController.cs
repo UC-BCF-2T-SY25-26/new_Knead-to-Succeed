@@ -1,11 +1,12 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
+public class SimplePlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float rotationSpeed = 10f;
-    public Transform model; // drag the child model here
+
+    public Transform model;
+    public Transform cameraTransform;
 
     private Rigidbody rb;
     private Vector3 moveInput;
@@ -17,8 +18,9 @@ public class PlayerController : MonoBehaviour
         rb.useGravity = true;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
 
-        // Freeze ALL physics rotation
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.constraints =
+            RigidbodyConstraints.FreezeRotationX |
+            RigidbodyConstraints.FreezeRotationZ;
     }
 
     void Update()
@@ -31,22 +33,43 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move with physics
-        rb.linearVelocity = new Vector3(
-            moveInput.x * moveSpeed,
-            rb.linearVelocity.y,
-            moveInput.z * moveSpeed
-        );
+        MovePlayer();
+        RotateModel();
+    }
 
-        // Rotate ONLY the visual model
-        if (moveInput.sqrMagnitude > 0.001f)
+    void MovePlayer()
+    {
+        if (cameraTransform == null) return;
+
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDirection =
+            forward * moveInput.z +
+            right * moveInput.x;
+
+        rb.linearVelocity =
+            moveDirection * moveSpeed +
+            new Vector3(0, rb.linearVelocity.y, 0);
+    }
+
+    void RotateModel()
+    {
+        if (model == null) return;
+
+        Vector3 horizontalVelocity =
+            new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        if (horizontalVelocity.sqrMagnitude > 0.01f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(moveInput);
-            model.rotation = Quaternion.Slerp(
-                model.rotation,
-                targetRotation,
-                rotationSpeed * Time.fixedDeltaTime
-            );
+            model.rotation =
+                Quaternion.LookRotation(horizontalVelocity);
         }
     }
 }
