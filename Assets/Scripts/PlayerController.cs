@@ -1,15 +1,11 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class SimplePlayerController : MonoBehaviour
+public class SimpleWASDController : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
-    public Transform model;
-    public Transform cameraTransform;
-
     private Rigidbody rb;
-    private Vector3 moveInput;
 
     void Awake()
     {
@@ -18,9 +14,11 @@ public class SimplePlayerController : MonoBehaviour
         rb.useGravity = true;
         rb.interpolation = RigidbodyInterpolation.Interpolate;
 
+        // Prevent tipping
         rb.constraints =
             RigidbodyConstraints.FreezeRotationX |
-            RigidbodyConstraints.FreezeRotationZ;
+            RigidbodyConstraints.FreezeRotationZ |
+            RigidbodyConstraints.FreezeRotationY;
     }
 
     void Update()
@@ -28,48 +26,12 @@ public class SimplePlayerController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
-        moveInput = new Vector3(x, 0f, z).normalized;
-    }
+        Vector3 move = new Vector3(x, 0f, z).normalized;
 
-    void FixedUpdate()
-    {
-        MovePlayer();
-        RotateModel();
-    }
-
-    void MovePlayer()
-    {
-        if (cameraTransform == null) return;
-
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
-
-        forward.y = 0f;
-        right.y = 0f;
-
-        forward.Normalize();
-        right.Normalize();
-
-        Vector3 moveDirection =
-            forward * moveInput.z +
-            right * moveInput.x;
-
-        rb.linearVelocity =
-            moveDirection * moveSpeed +
-            new Vector3(0, rb.linearVelocity.y, 0);
-    }
-
-    void RotateModel()
-    {
-        if (model == null) return;
-
-        Vector3 horizontalVelocity =
-            new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
-        if (horizontalVelocity.sqrMagnitude > 0.01f)
-        {
-            model.rotation =
-                Quaternion.LookRotation(horizontalVelocity);
-        }
+        rb.linearVelocity = new Vector3(
+            move.x * moveSpeed,
+            rb.linearVelocity.y,
+            move.z * moveSpeed
+        );
     }
 }

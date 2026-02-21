@@ -124,28 +124,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -492845263411402631, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
   m_PrefabInstance: {fileID: 1043083960}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &110695782
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110695778}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7068291901607325315, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
 --- !u!114 &110695786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +137,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoaderInteractable
   sceneToLoad: Baking
-  highlightColor: {r: 0, g: 0, b: 0, a: 1}
+  highlightColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!65 &110695790
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110695778}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9000765, y: 1.30638, z: 0.89958787}
+  m_Center: {x: 0.000000105899844, y: 0.000000013309442, z: 0.44659084}
 --- !u!1 &184306932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8894478252076812250, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
@@ -647,26 +646,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -6026953874832315108, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.95
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822278944948102174, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00924
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822278944948102174, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00375
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822278944948102174, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.00489
-      objectReference: {fileID: 0}
-    - target: {fileID: 5217358336407427601, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.8
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.5957108
@@ -719,9 +698,25 @@ PrefabInstance:
       propertyPath: m_Lightmapping
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -492845263411402631, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -492845263411402631, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       propertyPath: m_Name
       value: BakeryLayout
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787390712724228314, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1787390712724228314, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       propertyPath: m_TagString
@@ -734,6 +729,26 @@ PrefabInstance:
     - target: {fileID: 6300275077347965976, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6026953874832315108, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822278944948102174, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00924
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822278944948102174, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822278944948102174, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00489
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217358336407427601, guid: 7125309ffe0135f4c8ba90fbc5db0f20, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -764,10 +779,10 @@ PrefabInstance:
       addedObject: {fileID: 1064450803}
     - targetCorrespondingSourceObject: {fileID: -492845263411402631, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 110695782}
+      addedObject: {fileID: 110695786}
     - targetCorrespondingSourceObject: {fileID: -492845263411402631, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 110695786}
+      addedObject: {fileID: 110695790}
     - targetCorrespondingSourceObject: {fileID: -8894478252076812250, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 184306936}
@@ -794,7 +809,7 @@ PrefabInstance:
       addedObject: {fileID: 1972621220}
     - targetCorrespondingSourceObject: {fileID: 1787390712724228314, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1972621223}
+      addedObject: {fileID: 1972621226}
     - targetCorrespondingSourceObject: {fileID: 4965558566952795345, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1837733060}
@@ -902,7 +917,7 @@ GameObject:
   - component: {fileID: 1341846627}
   - component: {fileID: 1341846629}
   - component: {fileID: 1341846628}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,13 +932,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341846626}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.92387867, y: 2.7355895e-13, z: -0.00000014902339, w: 0.38268548}
-  m_LocalPosition: {x: -0.17586622, y: 2.1824815, z: 3.1344044}
+  m_LocalRotation: {x: 0.9063079, y: 0, z: 0, w: 0.42261827}
+  m_LocalPosition: {x: -0.02, y: 1.702, z: 2.435}
   m_LocalScale: {x: 1.0219156, y: 1.0219157, z: 1.0219157}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043083961}
-  m_LocalEulerAnglesHint: {x: 135, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 130, y: 0, z: 0}
 --- !u!81 &1341846628
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1131,8 +1146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
-  rotationSpeed: 10
-  model: {fileID: 0}
 --- !u!54 &1972621219
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1183,7 +1196,7 @@ CapsuleCollider:
   m_Height: 0.48472828
   m_Direction: 1
   m_Center: {x: -0.00000023841858, y: 0.0312892, z: 0.6498572}
---- !u!114 &1972621223
+--- !u!114 &1972621226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1197,6 +1210,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   playerCamera: {fileID: 1341846629}
   interactDistance: 5
+  interactKey: 101
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &2011136932
 GameObject:
   m_ObjectHideFlags: 0
