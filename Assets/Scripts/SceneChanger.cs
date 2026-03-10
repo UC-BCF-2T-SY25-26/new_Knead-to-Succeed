@@ -1,18 +1,14 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Essential for scene switching
+using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+public class LoadSceneButton : MonoBehaviour
 {
-    // You can call this by Scene Name
-    public void LoadNextScene(string MenuPage)
-    {
-        SceneManager.LoadScene(MenuPage);
-    }
+    // Name of the scene you want to load
+    public string sceneToLoad;
 
-    // Or call this to just load the next scene in the Build Index
-    public void LoadByIndex()
+    // This function will be called when the button is pressed
+    public void LoadScene()
     {
-        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(nextSceneIndex);
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
