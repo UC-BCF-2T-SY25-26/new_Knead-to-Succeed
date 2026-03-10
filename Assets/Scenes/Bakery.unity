@@ -790,6 +790,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4433741450735724578, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1923275681}
+    - targetCorrespondingSourceObject: {fileID: 5760522569487765211, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1401422469}
+    - targetCorrespondingSourceObject: {fileID: 8850809033038789416, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1796398644}
     - targetCorrespondingSourceObject: {fileID: 6300275077347965976, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1064450803}
@@ -808,6 +814,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8612226347287333458, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1115649463}
+    - targetCorrespondingSourceObject: {fileID: 8356076576432340775, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1344641622}
     - targetCorrespondingSourceObject: {fileID: 6316074109837829878, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1961277264}
@@ -1014,6 +1023,87 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1344641618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8356076576432340775, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+  m_PrefabInstance: {fileID: 1043083960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1344641622
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344641618}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3196666065534254252, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+--- !u!1 &1401422465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5760522569487765211, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+  m_PrefabInstance: {fileID: 1043083960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1401422469
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401422465}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5243781285385808940, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+--- !u!1 &1796398640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8850809033038789416, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+  m_PrefabInstance: {fileID: 1043083960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1796398644
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796398640}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4944909576235924206, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
 --- !u!1 &1837733056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4965558566952795345, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
