@@ -1,37 +1,27 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class SimpleWASDController : MonoBehaviour
+public class SimpleMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
-    private Rigidbody rb;
-
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-
-        rb.useGravity = true;
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
-
-        // Prevent tipping
-        rb.constraints =
-            RigidbodyConstraints.FreezeRotationX |
-            RigidbodyConstraints.FreezeRotationZ |
-            RigidbodyConstraints.FreezeRotationY;
-    }
-
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
+        float x = 0f;
+        float z = 0f;
 
-        Vector3 move = new Vector3(x, 0f, z).normalized;
+        if (Input.GetKey(KeyCode.W))
+            z += 1f;
 
-        rb.linearVelocity = new Vector3(
-            move.x * moveSpeed,
-            rb.linearVelocity.y,
-            move.z * moveSpeed
-        );
+        if (Input.GetKey(KeyCode.S))
+            z -= 1f;
+
+        if (Input.GetKey(KeyCode.A))
+            x -= 1f;
+
+        if (Input.GetKey(KeyCode.D))
+            x += 1f;
+
+        Vector3 move = new Vector3(x, 0f, z);
+        transform.position += move * moveSpeed * Time.deltaTime;
     }
 }
