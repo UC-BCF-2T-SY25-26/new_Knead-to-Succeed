@@ -806,6 +806,7 @@ MeshCollider:
   m_Mesh: {fileID: -3196666065534254252, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1401422465 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5760522569487765211, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
@@ -860,6 +861,8 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: -1
   m_Mesh: {fileID: -4944909576235924206, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -990,8 +993,11 @@ MeshCollider:
   m_Convex: 1
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_CookingOptions: -1
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   m_CookingOptions: 30
