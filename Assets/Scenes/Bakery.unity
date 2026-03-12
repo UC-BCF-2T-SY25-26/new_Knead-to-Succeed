@@ -804,8 +804,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3196666065534254252, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+=======
+>>>>>>> parent of 023e44f (Textrure Test)
 --- !u!1 &1401422465 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5760522569487765211, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
@@ -861,10 +864,13 @@ MeshCollider:
   m_CookingOptions: -1
   m_Mesh: {fileID: -4944909576235924206, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 023e44f (Textrure Test)
 --- !u!1 &1837733056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4965558566952795345, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
@@ -988,6 +994,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 5
   m_Convex: 1
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_CookingOptions: -1
@@ -996,6 +1003,9 @@ MeshCollider:
 >>>>>>> Stashed changes
   m_CookingOptions: 30
 >>>>>>> Stashed changes
+=======
+  m_CookingOptions: -1
+>>>>>>> parent of 023e44f (Textrure Test)
   m_Mesh: {fileID: 2429021578539692929, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
 --- !u!1 &1972621215 stripped
 GameObject:
