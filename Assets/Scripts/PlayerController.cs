@@ -21,7 +21,20 @@ public class SimpleMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
             x += 1f;
 
+        // Calculate movement vector
         Vector3 move = new Vector3(x, 0f, z);
+
+        // If there's any movement, rotate the player to face the direction
+        if (move.magnitude > 0f)
+        {
+            // Normalize the move vector to avoid diagonal movement being faster
+            move.Normalize();
+
+            // Rotate the character to face the movement direction
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), Time.deltaTime * 10f);
+        }
+
+        // Move the player
         transform.position += move * moveSpeed * Time.deltaTime;
     }
 }
