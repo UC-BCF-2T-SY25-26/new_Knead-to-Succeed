@@ -152,11 +152,26 @@ MonoBehaviour:
   tutorialPanel: {fileID: 186737068}
   steps:
   - Use the WASD keys on your keyboard to navigate around the shop.
-  - Navigate to the first workstation and left click it using your mouse.
-  - Hold left click to drag the flour, eggs, and yeast to make a nice batch of pandesal.
-    Let's start working!
+  - 'Navigate to the first workstation and press ''E'' to interact with it. '
+  - "Hold left click to drag the flour, yeast, and eggs into the bowl. \t"
   - 'Drag the bowl to the mixer. '
   - 'Wait for the dough to set. '
+  - 'Click the bowl to retrieve it. '
+  - 'Click the arrow to head to the next station. '
+  - 'Drag the dough unto the table. '
+  - 'Drag the rolling pin on the dough. '
+  - 'Click on the knife to retrieve it. '
+  - 'Follow the grid pattern by holding left click to cut the dough into pieces. '
+  - 'Click the arrow to head to the next station. '
+  - 'Click on a tray. '
+  - 'Drag the pastry brush to the melted butter, and brush it on the tray. '
+  - 'Place your sliced bread on the tray. '
+  - Click the arrow to head to the next station.
+  - 'Place the tray of bread into the oven. '
+  - 'Drag the timer to the appropriate time. '
+  - 'Wait for the bread to bake. '
+  - 'Navigate to the front bakery and left click on the bread rack to display the
+    bread. '
 --- !u!4 &110637136
 Transform:
   m_ObjectHideFlags: 0
@@ -270,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_Color: {r: 0.3207547, g: 0.09940784, b: 0.022694904, a: 0.9647059}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -310,10 +325,10 @@ RectTransform:
   - {fileID: 979043507}
   m_Father: {fileID: 892695532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 84.44614, y: -88.00156}
+  m_SizeDelta: {x: 1668.8497, y: 99.8857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &335328163
 GameObject:
@@ -458,12 +473,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -574,8 +589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 10.209, y: 1.7082}
+  m_SizeDelta: {x: 1648.4, y: 49.0237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &979043508
 CanvasRenderer:
@@ -607,8 +622,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Use WASD
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d28965c5fdc5f04db7163103818fcbf, type: 2}
+  m_sharedMaterial: {fileID: -4051834700372203244, guid: 4d28965c5fdc5f04db7163103818fcbf, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -671,7 +686,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -110.31836, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1159,7 +1174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6756a84feec1554a9c777500823d8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 5
+  speed: 5
 --- !u!54 &1972621219
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1260,10 +1275,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 892695532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -340.62, y: 197.98}
-  m_SizeDelta: {x: 79.7537, y: 80.0379}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 110, y: -88.001}
+  m_SizeDelta: {x: 79.75372, y: 80.0379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2011136934
 MonoBehaviour:
