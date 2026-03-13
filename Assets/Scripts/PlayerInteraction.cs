@@ -1,58 +1,25 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteract : MonoBehaviour
 {
-    public Camera playerCamera;
-    public float interactDistance = 5f;
-    public KeyCode interactKey = KeyCode.E;
-
-    public LayerMask interactableLayer;
-
-    private SceneLoaderInteractable currentInteractable;
+    public float interactDistance = 3f;
 
     void Update()
     {
-        Ray ray = new Ray(
-            playerCamera.transform.position,
-            playerCamera.transform.forward
-        );
-
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f,0.5f,0));
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
+        if (Physics.Raycast(ray, out hit, interactDistance))
         {
-            SceneLoaderInteractable interactable =
-                hit.collider.GetComponent<SceneLoaderInteractable>();
-
-            if (interactable != null)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (currentInteractable != interactable)
+                InteractableObject obj = hit.collider.GetComponent<InteractableObject>();
+
+                if (obj != null)
                 {
-                    ClearHighlight();
-
-                    currentInteractable = interactable;
-                    currentInteractable.Highlight();
+                    obj.Interact();
                 }
-
-                if (Input.GetKeyDown(interactKey))
-                {
-                    SceneManager.LoadScene(interactable.sceneToLoad);
-                }
-
-                return;
             }
-        }
-
-        ClearHighlight();
-    }
-
-    void ClearHighlight()
-    {
-        if (currentInteractable != null)
-        {
-            currentInteractable.RemoveHighlight();
-            currentInteractable = null;
         }
     }
 }
