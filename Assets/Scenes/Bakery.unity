@@ -152,7 +152,6 @@ MonoBehaviour:
   tutorialPanel: {fileID: 186737068}
   steps:
   - Use the WASD keys on your keyboard to navigate around the shop.
-  - 'Navigate to the first workstation and press ''E'' to interact with it. '
   - "Hold left click to drag the flour, yeast, and eggs into the bowl. \t"
   - 'Drag the bowl to the mixer. '
   - 'Wait for the dough to set. '
@@ -213,7 +212,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.9000765, y: 1.30638, z: 0.89958787}
   m_Center: {x: 0.000000105899844, y: 0.000000013309442, z: 0.44659084}
---- !u!114 &110695794
+--- !u!114 &110695798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,8 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc83c3633c297b449bebaefd59f9257a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableObject
-  mainCamera: {fileID: 1341846629}
-  interactionCamera: {fileID: 1671144715}
+  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  cameraToEnable: {fileID: 1671144713}
+  cameraToDisable: {fileID: 1341846626}
+  tutorialManager: {fileID: 110637135}
 --- !u!1 &184306932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8894478252076812250, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
@@ -327,8 +328,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 84.44614, y: -88.00156}
-  m_SizeDelta: {x: 1668.8497, y: 99.8857}
+  m_AnchoredPosition: {x: 56.241, y: -88.119}
+  m_SizeDelta: {x: 1612.439, y: 100.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &335328163
 GameObject:
@@ -589,8 +590,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.209, y: 1.7082}
-  m_SizeDelta: {x: 1648.4, y: 49.0237}
+  m_AnchoredPosition: {x: 0.000015497, y: -0.000015736}
+  m_SizeDelta: {x: 1566.099, y: 51.969}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &979043508
 CanvasRenderer:
@@ -647,8 +648,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -796,6 +797,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.922
       objectReference: {fileID: 0}
+    - target: {fileID: 6181433261738311077, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6300275077347965976, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -846,7 +851,7 @@ PrefabInstance:
       addedObject: {fileID: 110695790}
     - targetCorrespondingSourceObject: {fileID: -492845263411402631, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 110695794}
+      addedObject: {fileID: 110695798}
     - targetCorrespondingSourceObject: {fileID: -8894478252076812250, guid: 5af03f206d00dd64680c678c2668d957, type: 3}
       insertIndex: -1
       addedObject: {fileID: 184306936}
@@ -951,6 +956,7 @@ GameObject:
   - component: {fileID: 1341846627}
   - component: {fileID: 1341846629}
   - component: {fileID: 1341846628}
+  - component: {fileID: 1341846630}
   m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
@@ -967,7 +973,7 @@ Transform:
   m_GameObject: {fileID: 1341846626}
   serializedVersion: 2
   m_LocalRotation: {x: 0.9063079, y: 0, z: 0, w: 0.42261827}
-  m_LocalPosition: {x: -0.02, y: 1.702, z: 2.435}
+  m_LocalPosition: {x: -0.02, y: 2.27, z: 2.92}
   m_LocalScale: {x: 1.0219156, y: 1.0219157, z: 1.0219157}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1032,6 +1038,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1341846630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341846626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a41b385df99ec44fa5eaa7b3603df19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
+  interactDistance: 10
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1474349798
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,7 +1185,7 @@ Transform:
   m_GameObject: {fileID: 1671144713}
   serializedVersion: 2
   m_LocalRotation: {x: -0.09466661, y: 0.005074481, z: -0.0004826257, w: -0.99549603}
-  m_LocalPosition: {x: -7.76, y: 1.67, z: -0.31}
+  m_LocalPosition: {x: -7.76, y: 1.49, z: 0.061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1352,6 +1374,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   interactDistance: 5
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!65 &1972621229
 BoxCollider:
   m_ObjectHideFlags: 0

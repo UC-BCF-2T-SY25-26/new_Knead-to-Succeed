@@ -36,7 +36,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    void NextStep()
+    public void NextStep() // ← make this public
     {
         currentStep++;
         ShowStep();
