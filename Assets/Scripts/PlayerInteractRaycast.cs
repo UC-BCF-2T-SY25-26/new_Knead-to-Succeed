@@ -5,7 +5,7 @@ public class PlayerInteractRaycast : MonoBehaviour
     public float interactDistance = 8f;
     public LayerMask interactableLayer;
 
-    private InteractableObject currentInteractable;
+    private TableInteractable currentInteractable;
 
     void Update()
     {
@@ -16,7 +16,7 @@ public class PlayerInteractRaycast : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
         {
-            InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>();
+            TableInteractable interactable = hit.collider.GetComponentInParent<TableInteractable>();
 
             if (interactable != null)
             {
