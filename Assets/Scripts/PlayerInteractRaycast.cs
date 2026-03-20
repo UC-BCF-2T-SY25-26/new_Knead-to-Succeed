@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerInteractRaycast : MonoBehaviour
 {
     public float interactDistance = 8f;
-
     public LayerMask interactableLayer;
 
     private InteractableObject currentInteractable;
@@ -17,8 +16,6 @@ public class PlayerInteractRaycast : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, interactDistance, interactableLayer))
         {
-            Debug.Log("Ray hit: " + hit.collider.name);
-
             InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>();
 
             if (interactable != null)
@@ -26,10 +23,12 @@ public class PlayerInteractRaycast : MonoBehaviour
                 if (currentInteractable != interactable)
                 {
                     ClearCurrentInteractable();
-
                     currentInteractable = interactable;
                     currentInteractable.OnRaycastHit();
                 }
+
+                if (Input.GetKeyDown(KeyCode.E))
+                    currentInteractable.Interact();
 
                 return;
             }
