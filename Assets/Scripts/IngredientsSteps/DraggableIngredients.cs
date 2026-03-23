@@ -1,5 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class DragPlaneFix : MonoBehaviour
 {
     private Camera cam;
@@ -7,17 +8,33 @@ public class DragPlaneFix : MonoBehaviour
     private Vector3 offset;
     private bool isDragging;
 
-    private Vector3 velocity;          // Tracks movement speed
-    public float damping = 5f;         // How fast it slows down after release
+    private Vector3 velocity;
+    public float damping = 5f;
 
-    void Start()
+    [Header("Settings")]
+    public bool useCameraFacingPlane = true; // makes dragging feel natural
+    public bool useRigidbody = false;        // optional physics support
+
+    private Rigidbody rb;
+
+    void Awake()
     {
         cam = Camera.main;
+
+        if (useRigidbody)
+        {
+            rb = GetComponent<Rigidbody>();
+        }
     }
 
     void OnMouseDown()
     {
-        dragPlane = new Plane(Vector3.forward, transform.position);
+        // Choose plane direction
+        Vector3 planeNormal = useCameraFacingPlane 
+            ? cam.transform.forward 
+            : Vector3.forward;
+
+        dragPlane = new Plane(planeNormal, transform.position);
 
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
@@ -27,8 +44,11 @@ public class DragPlaneFix : MonoBehaviour
             offset = transform.position - hitPoint;
         }
 
-        velocity = Vector3.zero; // reset velocity
+        velocity = Vector3.zero;
         isDragging = true;
+
+        if (rb != null)
+            rb.isKinematic = true; // disable physics while dragging
     }
 
     void OnMouseDrag()
@@ -42,26 +62,32 @@ public class DragPlaneFix : MonoBehaviour
             Vector3 hitPoint = ray.GetPoint(enter);
             Vector3 targetPos = hitPoint + offset;
 
-            // Calculate velocity based on movement
             velocity = (targetPos - transform.position) / Time.deltaTime;
 
-            transform.position = targetPos;
+            if (rb != null)
+                rb.MovePosition(targetPos);
+            else
+                transform.position = targetPos;
         }
     }
 
     void OnMouseUp()
     {
         isDragging = false;
+
+        if (rb != null)
+            rb.isKinematic = false;
     }
 
     void Update()
     {
-        // Apply inertia when not dragging
         if (!isDragging && velocity.magnitude > 0.01f)
         {
-            transform.position += velocity * Time.deltaTime;
+            if (rb != null)
+                rb.MovePosition(rb.position + velocity * Time.deltaTime);
+            else
+                transform.position += velocity * Time.deltaTime;
 
-            // Smoothly reduce velocity
             velocity = Vector3.Lerp(velocity, Vector3.zero, damping * Time.deltaTime);
         }
     }
