@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - Draggable
+  - DropZone
   layers:
   - Default
   - TransparentFX

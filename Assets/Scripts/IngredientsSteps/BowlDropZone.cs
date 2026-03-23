@@ -2,15 +2,46 @@ using UnityEngine;
 
 public class BowlDropZone : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Draggable"))
-        {
-            // Optional: snap before disappearing
-            other.transform.position = transform.position;
+    [Header("Settings")]
+    public string draggableTag = "Draggable";
+    public Transform dropPoint;
+    public float detectionRadius = 0.5f;
 
-            // Make it disappear
-            Destroy(other.gameObject);
+    private void Update()
+    {
+        DetectObjects();
+    }
+
+    void DetectObjects()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, detectionRadius);
+
+        foreach (Collider col in hits)
+        {
+            if (col.CompareTag(draggableTag))
+            {
+                HandleDrop(col.gameObject);
+            }
         }
+    }
+
+    void HandleDrop(GameObject obj)
+    {
+        // Snap to drop point if assigned
+        if (dropPoint != null)
+        {
+            obj.transform.position = dropPoint.position;
+        }
+
+        obj.SetActive(false);
+
+        Debug.Log("Object dropped into bowl!");
+    }
+
+    // Optional: visualize detection radius in editor
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }
