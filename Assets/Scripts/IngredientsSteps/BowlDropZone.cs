@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BowlDropZone : MonoBehaviour
@@ -6,6 +7,9 @@ public class BowlDropZone : MonoBehaviour
     public string draggableTag = "Draggable";
     public Transform dropPoint;
     public float detectionRadius = 0.5f;
+    public bool disableDroppedObjects = true;
+
+    private HashSet<GameObject> processedObjects = new HashSet<GameObject>();
 
     private void Update()
     {
@@ -18,27 +22,47 @@ public class BowlDropZone : MonoBehaviour
 
         foreach (Collider col in hits)
         {
-            if (col.CompareTag(draggableTag))
-            {
-                HandleDrop(col.gameObject);
-            }
+            if (!col.CompareTag(draggableTag)) continue;
+            if (processedObjects.Contains(col.gameObject)) continue;
+
+            HandleDrop(col.gameObject);
+            processedObjects.Add(col.gameObject);
         }
     }
 
     void HandleDrop(GameObject obj)
     {
-        // Snap to drop point if assigned
         if (dropPoint != null)
         {
             obj.transform.position = dropPoint.position;
         }
 
-        obj.SetActive(false);
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
 
-        Debug.Log("Object dropped into bowl!");
+        DragPlaneFix dragScript = obj.GetComponent<DragPlaneFix>();
+        if (dragScript != null)
+        {
+            dragScript.enabled = false;
+        }
+
+        if (disableDroppedObjects)
+        {
+            obj.SetActive(false);
+            Debug.Log("Object dropped into bowl and was hidden.");
+        }
+        else
+        {
+            Debug.Log("Object dropped into bowl, but it was not hidden.");
+        }
     }
 
-    // Optional: visualize detection radius in editor
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;

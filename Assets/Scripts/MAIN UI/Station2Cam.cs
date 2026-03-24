@@ -6,10 +6,24 @@ public class Station2Cam : MonoBehaviour
     public GameObject currentCamera;
     public GameObject station2Camera;
 
-    [Header("Bowl Transfer")]
-    public GameObject bowlObject;
-    public Transform bowlSpawnPoint;
-    public GameObject doughPrefab;
+    [Header("Station 1 Bowl")]
+    public BowlDropZone bowlDropZone;
+
+    [Header("Dough")]
+    public GameObject doughObject;
+
+    [Header("Debug")]
+    public bool enableDebugSkip = true;
+    public KeyCode debugJumpKey = KeyCode.Return;
+
+    private void Update()
+    {
+        if (enableDebugSkip && Input.GetKeyDown(debugJumpKey))
+        {
+            SwitchToStation2();
+            Debug.Log("Debug skip: jumped straight to Station 2.");
+        }
+    }
 
     public void SwitchToStation2()
     {
@@ -23,38 +37,20 @@ public class Station2Cam : MonoBehaviour
             station2Camera.SetActive(true);
         }
 
-        if (bowlObject != null && bowlSpawnPoint != null)
+        if (bowlDropZone != null)
         {
-            bowlObject.transform.position = bowlSpawnPoint.position;
-            bowlObject.transform.rotation = bowlSpawnPoint.rotation;
+            bowlDropZone.enabled = false;
+            Debug.Log("BowlDropZone disabled for Station 2.");
+        }
 
-            for (int i = bowlObject.transform.childCount - 1; i >= 0; i--)
-            {
-                Destroy(bowlObject.transform.GetChild(i).gameObject);
-            }
-
-            if (doughPrefab != null)
-            {
-                GameObject spawnedDough = Instantiate(
-                    doughPrefab,
-                    bowlObject.transform.position,
-                    bowlObject.transform.rotation
-                );
-
-                spawnedDough.transform.SetParent(bowlObject.transform, true);
-
-                Debug.Log("Dough instantiated inside bowl.");
-            }
-            else
-            {
-                Debug.LogWarning("No doughPrefab assigned.");
-            }
-
-            Debug.Log("Bowl moved to Station 2.");
+        if (doughObject != null)
+        {
+            doughObject.SetActive(true);
+            Debug.Log("Dough enabled: " + doughObject.name);
         }
         else
         {
-            Debug.LogWarning("BowlObject or BowlSpawnPoint is missing.");
+            Debug.LogWarning("No doughObject assigned on Station2Cam.");
         }
 
         if (TutorialManager.Instance != null)
