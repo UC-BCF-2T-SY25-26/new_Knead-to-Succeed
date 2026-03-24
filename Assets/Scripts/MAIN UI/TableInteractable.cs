@@ -4,8 +4,8 @@ public class TableInteractable : MonoBehaviour
 {
     public Color highlightColor = Color.yellow;
 
-    public GameObject cameraToEnable;   // table camera
-    public GameObject cameraToDisable;  // main camera
+    public GameObject cameraToEnable;
+    public GameObject cameraToDisable;
     public MonoBehaviour playerMovementScript;
 
     private Renderer objectRenderer;
@@ -57,6 +57,11 @@ public class TableInteractable : MonoBehaviour
 
         if (playerMovementScript != null)
             playerMovementScript.enabled = false;
+
+        if (TutorialManager.Instance != null)
+        {
+            TutorialManager.Instance.NextStep();
+        }
 
         Debug.Log("[TABLE] Interacted - camera switched ON");
     }

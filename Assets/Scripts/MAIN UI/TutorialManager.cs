@@ -3,30 +3,29 @@ using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
+    public static TutorialManager Instance;
+
     public TextMeshProUGUI tutorialText;
     public GameObject tutorialPanel;
 
-    [TextArea(2,4)]
+    [TextArea(2, 4)]
     public string[] steps;
 
     int currentStep = 0;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
         ShowStep();
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            NextStep();
-        }
-    }
-
     void ShowStep()
     {
-        if(currentStep < steps.Length)
+        if (currentStep < steps.Length)
         {
             tutorialText.text = steps[currentStep];
         }
@@ -36,7 +35,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    public void NextStep() // ← make this public
+    public void NextStep()
     {
         currentStep++;
         ShowStep();

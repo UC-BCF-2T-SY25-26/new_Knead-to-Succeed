@@ -1,62 +1,50 @@
 ﻿using UnityEngine;
 
-public class EggReplace : MonoBehaviour
+public class EggDropReplace : MonoBehaviour
 {
-    [Header("Cracked Egg Prefab")]
+    [Header("Replacement Prefab")]
     public GameObject crackedEggPrefab;
 
     [Header("Spawn Settings")]
-    public Transform spawnPoint; // optional (if null, uses current position)
+    public Transform spawnPoint;
+    public Transform parentAfterSpawn;
+    public Vector3 spawnRotationEuler = new Vector3(-3.58f, -144.3f, 0f);
 
-    private bool hasReplaced = false;
+    [Header("Drop Settings")]
+    public string dropZoneTag = "DropZone";
+
+    private bool hasDropped = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered by: " + other.gameObject.name);
+        if (hasDropped) return;
+        if (!other.CompareTag(dropZoneTag)) return;
 
-        if (hasReplaced)
-        {
-            Debug.Log("Already replaced, ignoring trigger.");
-            return;
-        }
+        hasDropped = true;
 
-        if (other.CompareTag("dropZone"))
-        {
-            Debug.Log("DropZone detected!");
-
-            SpawnCrackedEgg();
-
-            hasReplaced = true;
-
-            // Hide original egg
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("Entered trigger but not dropZone: " + other.tag);
-        }
-    }
-
-    void SpawnCrackedEgg()
-    {
         if (crackedEggPrefab == null)
         {
-            Debug.LogError("❌ Cracked Egg Prefab is NOT assigned in Inspector!");
-            return;
-        }
-
-        Vector3 spawnPos = spawnPoint != null ? spawnPoint.position : transform.position;
-        Quaternion spawnRot = spawnPoint != null ? spawnPoint.rotation : transform.rotation;
-
-        GameObject newEgg = Instantiate(crackedEggPrefab, spawnPos, spawnRot);
-
-        if (newEgg != null)
-        {
-            Debug.Log("✅ Cracked egg spawned successfully!");
+            Debug.LogWarning("No crackedEggPrefab assigned on " + gameObject.name);
         }
         else
         {
-            Debug.LogError("❌ Failed to spawn cracked egg!");
+            Vector3 spawnPosition = spawnPoint != null ? spawnPoint.position : transform.position;
+            Quaternion spawnRotation = Quaternion.Euler(spawnRotationEuler);
+
+            GameObject spawnedEgg = Instantiate(crackedEggPrefab, spawnPosition, spawnRotation);
+
+            if (parentAfterSpawn != null)
+            {
+                spawnedEgg.transform.SetParent(parentAfterSpawn, true);
+            }
+            else
+            {
+                spawnedEgg.transform.SetParent(other.transform, true);
+            }
+
+            Debug.Log("Spawned egg at: " + spawnedEgg.transform.position);
         }
+
+        Destroy(gameObject);
     }
 }
