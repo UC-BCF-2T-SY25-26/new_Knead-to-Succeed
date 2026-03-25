@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class Station2Cam : MonoBehaviour
 {
@@ -8,6 +9,11 @@ public class Station2Cam : MonoBehaviour
 
     [Header("Station 1 Bowl")]
     public BowlDropZone bowlDropZone;
+
+    [Header("Station 1 UI")]
+    public MixerTimerUI mixerTimerUI;
+    public TMP_Text mixerTimerText;
+    public GameObject nextStationArrowButton;
 
     [Header("Dough")]
     public GameObject doughObject;
@@ -41,6 +47,22 @@ public class Station2Cam : MonoBehaviour
         {
             bowlDropZone.enabled = false;
             Debug.Log("BowlDropZone disabled for Station 2.");
+        }
+
+        if (mixerTimerUI != null)
+        {
+            mixerTimerUI.HideTimerUI();
+        }
+
+        if (mixerTimerText != null)
+        {
+            mixerTimerText.gameObject.SetActive(false);
+            Debug.Log("Mixer timer text hidden directly.");
+        }
+
+        if (nextStationArrowButton != null)
+        {
+            nextStationArrowButton.SetActive(false);
         }
 
         if (doughObject != null)

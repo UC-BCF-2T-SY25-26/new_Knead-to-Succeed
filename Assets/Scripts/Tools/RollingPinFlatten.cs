@@ -29,12 +29,8 @@ public class RollingPinFlatten : MonoBehaviour
 
         hasRolled = true;
 
-        flattenedDoughObject.transform.position = doughObject.transform.position;
-        flattenedDoughObject.transform.rotation = doughObject.transform.rotation;
-        flattenedDoughObject.transform.localScale = doughObject.transform.localScale;
-
-        flattenedDoughObject.SetActive(true);
         doughObject.SetActive(false);
+        flattenedDoughObject.SetActive(true);
 
         Debug.Log("Dough flattened.");
 

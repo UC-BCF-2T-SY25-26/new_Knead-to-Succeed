@@ -1,38 +1,38 @@
 using UnityEngine;
 using TMPro;
 
-public class MixerTimerUI : MonoBehaviour
+public class OvenTimerUI : MonoBehaviour
 {
-    [Header("Snap Settings")]
-    public Transform snapPoint;
+    [Header("Oven Settings")]
+    public Transform traySnapPoint;
 
     [Header("Timer Settings")]
-    public float mixDuration = 5f;
+    public float bakeDuration = 5f;
 
     [Header("UI")]
     public TMP_Text timerText;
-    public GameObject nextStationArrowButton;
 
     [Header("Audio")]
     public AudioSource audioSource;
-    public AudioClip mixerRunningSfx;
+    public AudioClip ovenRunningSfx;
+
+    public bool IsBakeComplete { get; private set; }
 
     private float timeRemaining;
     private bool timerRunning = false;
 
-    private void Start()
+    private void Awake()
     {
-        timeRemaining = mixDuration;
-
         if (timerText != null)
         {
             timerText.gameObject.SetActive(false);
         }
+    }
 
-        if (nextStationArrowButton != null)
-        {
-            nextStationArrowButton.SetActive(false);
-        }
+    private void Start()
+    {
+        timeRemaining = bakeDuration;
+        IsBakeComplete = false;
     }
 
     private void Update()
@@ -47,6 +47,7 @@ public class MixerTimerUI : MonoBehaviour
             {
                 timeRemaining = 0f;
                 timerRunning = false;
+                IsBakeComplete = true;
                 UpdateFinishedDisplay();
 
                 if (audioSource != null)
@@ -54,17 +55,12 @@ public class MixerTimerUI : MonoBehaviour
                     audioSource.Stop();
                 }
 
-                if (nextStationArrowButton != null)
-                {
-                    nextStationArrowButton.SetActive(true);
-                }
-
                 if (TutorialManager.Instance != null)
                 {
                     TutorialManager.Instance.NextStep();
                 }
 
-                Debug.Log("Mixer finished!");
+                Debug.Log("Oven finished baking!");
                 return;
             }
 
@@ -72,32 +68,28 @@ public class MixerTimerUI : MonoBehaviour
         }
     }
 
-    public void StartMixerTimer()
+    public void StartOvenTimer()
     {
         if (timerRunning) return;
 
-        timeRemaining = mixDuration;
+        timeRemaining = bakeDuration;
         timerRunning = true;
+        IsBakeComplete = false;
 
         if (timerText != null)
         {
             timerText.gameObject.SetActive(true);
         }
 
-        if (nextStationArrowButton != null)
+        if (audioSource != null && ovenRunningSfx != null)
         {
-            nextStationArrowButton.SetActive(false);
-        }
-
-        if (audioSource != null && mixerRunningSfx != null)
-        {
-            audioSource.clip = mixerRunningSfx;
+            audioSource.clip = ovenRunningSfx;
             audioSource.loop = false;
             audioSource.Play();
         }
 
         UpdateTimerDisplay(timeRemaining);
-        Debug.Log("Mixer timer started.");
+        Debug.Log("Oven timer started.");
     }
 
     public void HideTimerUI()
@@ -113,16 +105,11 @@ public class MixerTimerUI : MonoBehaviour
         {
             timerText.gameObject.SetActive(false);
         }
-
-        if (nextStationArrowButton != null)
-        {
-            nextStationArrowButton.SetActive(false);
-        }
     }
 
-    public Transform GetSnapTarget()
+    public Transform GetTraySnapTarget()
     {
-        return snapPoint != null ? snapPoint : transform;
+        return traySnapPoint != null ? traySnapPoint : transform;
     }
 
     private void UpdateTimerDisplay(float time)

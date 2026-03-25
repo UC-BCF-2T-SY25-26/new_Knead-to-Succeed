@@ -9,6 +9,7 @@ TagManager:
   - DropZone
   - dropZone
   - Mixer
+  - Oven
   layers:
   - Default
   - TransparentFX

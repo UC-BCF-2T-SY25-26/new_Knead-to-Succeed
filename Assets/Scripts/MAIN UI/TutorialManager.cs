@@ -11,33 +11,47 @@ public class TutorialManager : MonoBehaviour
     [TextArea(2, 4)]
     public string[] steps;
 
-    int currentStep = 0;
+    private int currentStep = 0;
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
-        ShowStep();
+        if (tutorialPanel != null)
+        {
+            tutorialPanel.SetActive(false);
+        }
     }
 
-    void ShowStep()
+    public void ShowCurrentStep()
     {
         if (currentStep < steps.Length)
         {
-            tutorialText.text = steps[currentStep];
+            if (tutorialPanel != null)
+            {
+                tutorialPanel.SetActive(true);
+            }
+
+            if (tutorialText != null)
+            {
+                tutorialText.text = steps[currentStep];
+            }
         }
         else
         {
-            tutorialPanel.SetActive(false);
+            if (tutorialPanel != null)
+            {
+                tutorialPanel.SetActive(false);
+            }
         }
     }
 
     public void NextStep()
     {
         currentStep++;
-        ShowStep();
+        ShowCurrentStep();
     }
 }
